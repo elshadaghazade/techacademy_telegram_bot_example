@@ -47,6 +47,16 @@ python main.py
 
 Qeyd: virtualenv-i deaktiv etmək üçün deactivate əmrini yazmağınız kifayətdir
 
+### How to create telegram bot
+[![How to create telegram bot](https://img.youtube.com/vi/PFrfSOISbGo/0.jpg)](https://www.youtube.com/watch?v=PFrfSOISbGo)
+
+### How to create telegram channel and give access to your bot
+[![How to create telegram channel and give access to your bot](https://img.youtube.com/vi/NQxn0TuDhXo/0.jpg)](https://www.youtube.com/watch?v=NQxn0TuDhXo)
+
+### Telegram Bot Client Testing
+[![Telegram Bot Client Testing](https://img.youtube.com/vi/DxHWJTUeP6Q/0.jpg)](https://www.youtube.com/watch?v=DxHWJTUeP6Q)
+
+
 ## Authors
 
 * **Elshad Agayev** - *Fullstack Developer* - [LinkedIn Profile](https://www.linkedin.com/in/elshadaghazadeh/)

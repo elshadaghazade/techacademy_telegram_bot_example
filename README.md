@@ -25,7 +25,7 @@ source .py3/bin/activate
 
 4. Asılıqları package.txt faylından yükləyirik:
 ```
-pip install -r pacakge.txt
+pip install -r package.txt
 ```
 5. .env_sample faylının adını dəyişib .env edirik:
 ```

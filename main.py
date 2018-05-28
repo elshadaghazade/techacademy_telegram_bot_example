@@ -13,13 +13,12 @@ def prompt():
         inquirer.Text(name="ads_id", message="Elanın İD nömrəsini yazın", validate=lambda _, x: str(x).isnumeric())
     ]
     answers = inquirer.prompt(questions)
-
-    crawler = Crawler(answers['ads_id'])
     
     try:
+        crawler = Crawler(answers['ads_id'])
         info = crawler.get_info()
-        bot = Bot()
-        bot.send(info)
+        bot = Bot(info)
+        bot.send()
     except Exception as err:
         print(err)
     

@@ -7,38 +7,44 @@ class Crawler:
         try:
             self.ads_id = int(ads_id)
         except Exception as err:
-            print("Crawler error at line 9:", err)
-            exit()
+            raise("Elanin ID nomresi sehvdir")
     
     def get_info (self):
         r = rq.get(f"{os.environ['ADS_BASE_URL']}/car/{self.ads_id}")
         
         if r.status_code != 200:
-            raise Exception("Elan tapılmadı")
+            r.raise_for_status()
 
         dom = html.fromstring(r.content)
         
         # finding price
-        price = dom.xpath('//div[@class="eln_price"]//b/text()')[0]
+        price = dom.xpath('//div[@class="eln_price"]//b/text()')
+        price = price[0] if price else None
 
         # finding image url
-        image_src = dom.xpath('//meta[@property="og:image"]/@content')[0]
+        image_src = dom.xpath('//meta[@property="og:image"]/@content')
+        image_src = image_src[0] if image_src else None
         
         # finding ads description
-        descr = "\n".join(dom.xpath('//div[@class="eln_desc"]/text()'))
+        descr = dom.xpath('//div[@class="eln_desc"]/text()')
+        descr = "\n".join(descr) if descr else None
 
         # finding title
-        title = dom.xpath('//title/text()')[0].split(" - ")[0]
+        title = dom.xpath('//title/text()')
+        title = title[0].split(" - ")[0] if title else None
 
 
         # finding year
-        year = dom.xpath('//div[@class="eln_right"]//table//td[contains(text(),"Buraxılış ili")]/following-sibling::td[1]//b/text()')[0]
+        year = dom.xpath('//div[@class="eln_right"]//table//td[contains(text(),"Buraxılış ili")]/following-sibling::td[1]//b/text()')
+        year = year[0] if year else None
 
         # finding milage
-        milage = dom.xpath('//div[@class="eln_right"]//table//td[contains(text(), "Yürüş")]/following-sibling::td[1]//b/text()')[0]
+        mileage = dom.xpath('//div[@class="eln_right"]//table//td[contains(text(), "Yürüş")]/following-sibling::td[1]//b/text()')
+        mileage = mileage[0] if mileage else None
 
         # finding engine
-        engine = dom.xpath('//div[@class="eln_right"]//table//td[contains(text(),"Mühərrik")]/following-sibling::td[1]//text()')[0]
+        engine = dom.xpath('//div[@class="eln_right"]//table//td[contains(text(),"Mühərrik")]/following-sibling::td[1]//text()')
+        engine = engine[0] if engine else None
 
         return {
             "url": r.url,
@@ -47,6 +53,6 @@ class Crawler:
             "price": price,
             "title": title,
             "year": year,
-            "milage": milage,
+            "mileage": mileage,
             "engine": engine
         }
